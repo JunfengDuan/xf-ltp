@@ -9,12 +9,15 @@
 
 ###接口选择
 受信人识别：sxr
+
 来信人识别：lxr
 
 调用身份证号识别接口 ： extract_id
+
 调用手机号识别接口： extract_tel
 
 地址识别：address
+
 组织机构识别：org
 
 分词：seg
