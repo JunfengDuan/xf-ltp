@@ -38,6 +38,13 @@ def read_sxr_rel(sxr_file):
     return person_rel_dict, person_rel_list
 
 
+# 分词
+def only_seg(sentence, lexicon_path=None):
+    text = sentence.replace('\n', '')
+    segs = list(extract.segment(text, lexicon_path))
+    return str(dict(result=segs))
+
+
 # 实体抽取
 # sentence='尊敬的习大大您好'
 def text_ner(sentence, lexicon_path=None):
@@ -79,9 +86,11 @@ def get_effect_sent(text):
 
     sentences = extract.split(text)
     # print('sentences:', sentences)
-    effective_sents = [sentences[0], sentences[sentences.__len__() - 1]]
+    effective_sents = [sentences[0], sentences[-1]]
+    if len(sentences) > 1:
+        cadidate_sents = sentences[1]
 
-    return effective_sents
+    return effective_sents, cadidate_sents
 
 
 # 组织机构抽取

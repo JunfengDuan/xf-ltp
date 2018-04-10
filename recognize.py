@@ -6,6 +6,7 @@ from ner.lxr_ner import lxr_ner
 from ner.org_ner import org_ner
 from ner.address_ner import address_ner
 from rule.rule_number import *
+import ner.cn_ner as ner
 
 
 app = Flask(__name__)
@@ -100,6 +101,22 @@ def extract_tel():
     print('phone_num:', phone_num)
 
     return phone_num
+
+
+@app.route('/seg', methods=['GET', 'POST'])
+def seg():
+
+    text = request.get_json().get('text')
+
+    print('text:', text)
+
+    if text is None or len(text) == 0:
+        return ""
+
+    segment = ner.only_seg(text, lexicon_path='dict/lexicon.txt')
+    print('segment:', segment)
+
+    return segment
 
 
 if __name__ == '__main__':

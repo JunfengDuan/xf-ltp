@@ -7,14 +7,22 @@ sxr = read_sxr('sxr.txt')
 def lxr_ner(text):
 
     text = text.replace('\n', '')
-    sentences = get_effect_sent(text)
+    sentences, cad_sent = get_effect_sent(text)
     sent_str = " ".join(sentences)
 
-    entity = text_ner(sent_str, 'dict/lxr_lexicon.txt')
+    data = lxr_ner_handle(sent_str)
+    if not data:
+        data = lxr_ner_handle(cad_sent)
+    return str(dict(result=data))
+
+
+def lxr_ner_handle(sent):
+    entity = text_ner(sent, 'dict/lxr.txt')
     lxr_set = lxr_extract(entity)
 
     data = []
     for name in lxr_set:
         if name not in sxr:
             data.append(name)
-    return str(dict(result=data))
+    return data
+

@@ -12,11 +12,20 @@ def sxr_ner(text):
     print('sxr_rel_list:', sxr_rel_list)
 
     text = text.replace('\n', '')
-    sents = get_effect_sent(text)
+    sents, cad_sent = get_effect_sent(text)
     sent_str = " ".join(sents)
 
+    full_name = sxr_handle(sent_str)
+    if not full_name:
+        full_name = sxr_handle(cad_sent)
+    data = str(dict(result=full_name))
+    return data
+
+
+def sxr_handle(sent_str):
     objects = []
-    entity = text_ner(sent_str, 'dict/sxr_lexicon.txt')
+
+    entity = text_ner(sent_str, 'dict/sxr.txt')
     sxr_objects = sx_object_extract(entity)
     if sxr_objects:
         objects.extend(sxr_objects)
@@ -33,8 +42,7 @@ def sxr_ner(text):
             obj.append(bt)
 
     full_name = name_link(obj)
-    data = str(dict(result=full_name))
-    return data
+    return full_name
 
 
 def name_link(ner_name):
