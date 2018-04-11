@@ -15,7 +15,7 @@ def read_file(path):
 def read_sxr(sxr_file):
     sxr_file_path = os.path.join('dict', sxr_file)
     person = []
-    with open(sxr_file_path, 'r') as f:
+    with open(sxr_file_path, 'r', encoding='utf-8') as f:
         for line in f.readlines():
             line = line.replace('\n', '').replace(' ', '')
             person.append(line)
@@ -27,7 +27,7 @@ def read_sxr_rel(sxr_file):
     sxr_file_path = os.path.join('dict', sxr_file)
     person_rel_dict = dict()
     person_rel_list = []
-    with open(sxr_file_path, 'r') as f:
+    with open(sxr_file_path, 'r', encoding='utf-8') as f:
         for line in f.readlines():
             line = line.replace('\n', '')
             name_short = line.split(':')
