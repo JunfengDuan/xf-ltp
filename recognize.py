@@ -119,6 +119,22 @@ def seg():
     return segment
 
 
+@app.route('/person_count', methods=['GET', 'POST'])
+def person_count():
+
+    text = request.get_json().get('text')
+
+    print('text:', text)
+
+    if text is None or len(text) == 0:
+        return ""
+
+    count = ner.name_count(text, lexicon_path='dict/lexicon.txt')
+    print('name_count:', count)
+
+    return count
+
+
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', port=8083, debug=True)
