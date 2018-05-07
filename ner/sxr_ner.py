@@ -19,7 +19,7 @@ def sxr_ner(text):
     if not full_name:
         full_name = sxr_handle(cad_sent)
     data = str(dict(result=full_name))
-    return data
+    return data, full_name
 
 
 def sxr_handle(sent_str):

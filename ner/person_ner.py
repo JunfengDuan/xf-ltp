@@ -9,10 +9,11 @@ def name_count(text, lexicon_path):
     entity = text_ner(text, lexicon_path)
     persons = lxr_extract(entity)
 
-    sx_persons = sxr_ner(text)['result']
+    _, sx_persons = sxr_ner(text)
 
     for name in persons:
         if name in sx_persons:
             persons.remove(name)
 
-    return int(len(persons))
+    count = int(len(persons))
+    return str(dict(result=count))

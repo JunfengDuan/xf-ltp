@@ -5,6 +5,7 @@ from ner.sxr_ner import sxr_ner
 from ner.lxr_ner import lxr_ner
 from ner.org_ner import org_ner
 from ner.address_ner import address_ner
+from ner.person_ner import name_count
 from rule.rule_number import *
 import ner.cn_ner as ner
 
@@ -52,7 +53,7 @@ def sxr():
     if text is None or len(text) == 0:
         return ""
 
-    response = sxr_ner(text)
+    response, _ = sxr_ner(text)
     print('\nresponse:', response)
 
     return response
@@ -129,7 +130,7 @@ def person_count():
     if text is None or len(text) == 0:
         return ""
 
-    count = ner.name_count(text, lexicon_path='dict/lexicon.txt')
+    count = name_count(text, lexicon_path='dict/lexicon.txt')
     print('name_count:', count)
 
     return count
