@@ -8,21 +8,21 @@
 访问：http://host:8083/接口
 
 ###接口选择
-受信人识别：sxr
+1.受信人识别：sxr
 
-来信人识别：lxr
+2.来信人识别：lxr
 
-调用身份证号识别接口 ： extract_id
+3.调用身份证号识别接口 ： extract_id
 
-调用手机号识别接口： extract_tel
+4.调用手机号识别接口： extract_tel
 
-地址（归属地）识别：address
+5.地址（归属地）识别：address
 
-组织机构识别：org
+6.组织机构识别：org
 
-分词：seg
+7.分词：seg
 
-统计人数：person_count
+8.统计人数：person_count
 
 传参格式{"text" : "..."}
 
@@ -36,4 +36,7 @@ lxr:来信人词典
 sxr:受信人词典
 
 rel:受信人名称关联词典
+
+## 数据库配置文件
+jdbc.txt
 
