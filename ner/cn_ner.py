@@ -112,7 +112,7 @@ def address_extract(entity):
     address = []
     s = ''
     for n in entity:
-        if n[1] in pos and n[2] in labels:
+        if n[1] in pos or n[2] in labels:
             s += n[0]
             continue
         else:

@@ -22,6 +22,8 @@
 
 分词：seg
 
+统计人数：person_count
+
 传参格式{"text" : "..."}
 
 返回数据格式：json字符串{"result":""}
